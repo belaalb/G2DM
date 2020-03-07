@@ -1,4 +1,4 @@
-# Adversarial DG
+# Adversarial target-invariant domain generalization
 
 ## Requirements
 ```
@@ -57,7 +57,7 @@ python baseline_train.py --lr 0.001 --l2 0.00001 --patience 120 ---source1 PASCA
 ### Running IRM
 ```
 cd IRM-vlcs
-python train.py --lr 0.0004898536566546834 --l2 0.00110794568 --penalty_weight 91257.18613115903 --penalty_anneal_epochs 78 --source1 PASCAL --source2 LABELME --source3 SUN --target CALTECH
+python train.py --lr 0.0004898536566546834 --l2 0.00221589136 --penalty_weight 91257.18613115903 --penalty_anneal_epochs 78 --source1 PASCAL --source2 LABELME --source3 SUN --target CALTECH
 ```
 
 ## Table 2
@@ -93,7 +93,7 @@ python baseline_train.py --lr 0.001 --l2 0.0001 --momentum 0.9 --patience 120 --
 ### Running IRM
 ```
 cd IRM-pacs
-python train.py --lr 0.0004898536566546834 --l2 0.00110794568 --penalty_weight 91257.18613115903 --penalty_anneal_epochs 78 --source1 photo --source2 cartoon --source3 sketch --target artpainting
+python train.py --lr 0.0004898536566546834 --l2 0.00221589136 --penalty_weight 91257.18613115903 --penalty_anneal_epochs 78 --source1 photo --source2 cartoon --source3 sketch --target artpainting
 ```
 
 ## Figure 3
