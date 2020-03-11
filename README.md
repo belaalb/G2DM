@@ -1,5 +1,9 @@
 # Adversarial target-invariant domain generalization
 
+# Binder
+Click on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadJavadD/TI-DG/master) and open binder.ipynb
+
+
 ## Requirements
 ```
 Python >= 3.6
