@@ -19,7 +19,7 @@ To Install requirements:
 
 ## Download PACS
 - Downlaod the original splits from the folder "train val splits and h5py files pre-read" found at https://drive.google.com/drive/folders/0B6x7gtvErXgfUU1WcGY5SzdwZVk
-- Move it to code/data/pacs/prepared_data
+- Move it to ./data/pacs/prepared_data
 and then
 
 
@@ -37,7 +37,7 @@ Download it from http://www.mediafire.com/file/7yv132lgn1v267r/vlcs.tar.gz/file,
 
 
 ## Download pre-trained AlexNet 
-Download it from https://drive.google.com/file/d/1wUJTH1Joq2KAgrUDeKJghP1Wf7Q9w4z-/view?usp=sharing and move it to code/
+Download it from https://drive.google.com/file/d/1wUJTH1Joq2KAgrUDeKJghP1Wf7Q9w4z-/view?usp=sharing and move it to ./
 Or
 
 ```
