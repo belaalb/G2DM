@@ -33,36 +33,39 @@ python prep_hdf.py --train-val-test test
 ```
 
 ## Download VLCS
-Download it from http://www.mediafire.com/file/7yv132lgn1v267r/vlcs.tar.gz/file, extract, move it to ./vlcs/ and then
-```
-mv vlcs prepared_data
-```
+Download it from http://www.mediafire.com/file/7yv132lgn1v267r/vlcs.tar.gz/file, extract, move it to ./data/vlcs/ prepared_data/ and then
+
 
 ## Download pre-trained AlexNet 
 Download it from https://drive.google.com/file/d/1wUJTH1Joq2KAgrUDeKJghP1Wf7Q9w4z-/view?usp=sharing and move it to code/
+Or
+
+```
+python download_alexnet.py
+```
 
 ## Table 1
 Example considering Caltech101 as target domain.
 
-### Running ours
+### Running ours [Done]
 ```
-cd vlcs
-python train.py --lr-task 0.001 --lr-domain 0.005 --l2 0.005 --smoothing 0.2 --lr-threshold 0.0001 --factor 0.3 --alpha --rp-size 3500 --patience 60 --warmup-its 300 --source1 PASCAL --source2 LABELME --source3 SUN --target CALTECH
-```
-
-### Running ERM
-```
-cd vlcs
-python baseline_train.py --lr 0.001 --l2 0.00001 --patience 120 ---source1 PASCAL --source2 LABELME --source3 SUN --target CALTECH
+cd vlcs-ours
+python train.py --lr-task 0.001 --lr-domain 0.005 --l2 0.005 --smoothing 0.2 --lr-threshold 0.0001 --factor 0.3 --alpha 0.8 --rp-size 3500 --patience 60 --warmup-its 300 --source1 PASCAL --source2 LABELME --source3 SUN --target CALTECH
 ```
 
-### Running IRM
+### Running ERM [Done]
+```
+cd vlcs-ours
+python baseline_train.py --lr 0.001 --l2 0.00001 --patience 120 --source1 PASCAL --source2 LABELME --source3 SUN --target CALTECH
+```
+
+### Running IRM 
 ```
 cd IRM-vlcs
 python train.py --lr 0.0004898536566546834 --l2 0.00221589136 --penalty_weight 91257.18613115903 --penalty_anneal_epochs 78 --source1 PASCAL --source2 LABELME --source3 SUN --target CALTECH
 ```
 
-## Table 2
+## Table 2 
 Example considering SUN09 and Caltech-101 as target domains. 
 
 ### Running ours
@@ -77,18 +80,18 @@ cd vlcs-2sources
 python baseline_train.py --lr 0.001 --l2 0.00001 --patience 120 --source1 PASCAL --source2 LABELME --target1 SUN --target2 CALTECH
 ```
 
-## Table 3
+## Table 3 
 Example considering art painting as target domain.
 
 ### Running ours
 ```
-cd pacs
+cd pacs-ours
 python train.py --lr-task 0.01 --lr-domain 0.0005 --l2 0.0005 --smoothing 0.2 --lr-threshold 0.00001 --factor 0.5 --alpha 0.8 --rp-size 1000 --patience 80 --warmup-its 300 --source1 photo --source2 cartoon --source3 sketch --target artpainting
 ```
 
 ### Running ERM
 ```
-cd pacs
+cd pacs-ours
 python baseline_train.py --lr 0.001 --l2 0.0001 --momentum 0.9 --patience 120 --source1 photo --source2 cartoon --source3 sketch --target artpainting
 ```
 
@@ -100,11 +103,11 @@ python train.py --lr 0.0004898536566546834 --l2 0.00221589136 --penalty_weight 9
 
 ## Figure 3
 ```
-cd pacs
+cd pacs-ours
 python h_divergence.py --batch-size 500 --encoder-path path-to-trained-model --dg-type ['erm', 'adversarial'] 
 ```
 
-## Table 4
+## Table 4 [Done]
 - For running AlexNet experiments, use same code from Table 3 experiments.
 - For running Jigsaw, see authors original implementation at https://github.com/fmcarlucci/JigenDG.
 - For running ResNet experiments:
