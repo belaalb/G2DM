@@ -64,9 +64,9 @@ for run in range(args.n_runs):
 	img_transform_train = transforms.Compose([transforms.RandomResizedCrop(225, scale=(0.7,1.0)), transforms.RandomHorizontalFlip(), transforms.ToTensor(), transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
 	img_transform_test = transforms.Compose([transforms.Resize((225, 225)), transforms.ToTensor(), transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
 
-	if args.data_path is None:
+	if args.data_path is None: 
 		args.data_path = os.path.join('/',os.path.join(* os.getcwd().split('/')[0:-1]), 'data', 'vlcs', 'prepared_data/')
-		print(args.data_path)
+		print(args.data_path)  
 
 	train_source_1 = args.data_path + args.source1 + '/train/'
 	train_source_2 = args.data_path + args.source2 + '/train/'

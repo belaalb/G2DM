@@ -109,7 +109,7 @@ for run in range(args.n_runs):
 #,transforms.ColorJitter(),transforms.CenterCrop(size=225),
 #,transforms.CenterCrop(size=225)
 
-	if args.data_path is None:
+	if args.data_path is None:  
 		args.data_path = os.path.join('/',os.path.join(* os.getcwd().split('/')[0:-1]), 'data', 'pacs', 'prepared_data/')
 		print(args.data_path)
 

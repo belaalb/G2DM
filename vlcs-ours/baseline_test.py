@@ -10,7 +10,7 @@ def test(dataloader, model, device, source_target, epoch = 0, tb_writer=None):
 
 	model = model.eval()
 	
-	with torch.no_grad():
+	with torch.no_grad(): 
 
 		model = model.to(device)
 
