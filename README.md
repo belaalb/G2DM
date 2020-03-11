@@ -11,23 +11,25 @@ tqdm
 pandas
 seaborn
 ```
+To Install requirements:
+
+```
+  pip install -r requirements.txt
+```
 
 ## Download PACS
 - Downlaod the original splits from the folder "train val splits and h5py files pre-read" found at https://drive.google.com/drive/folders/0B6x7gtvErXgfUU1WcGY5SzdwZVk
-- Move it to code/pacs/ 
+- Move it to code/data/pacs/prepared_data
 and then
-```
-mv train val splits and h5py files pre-read prepared_data
-cd prepared_data
-mv art_painting_train.hdf5 artpainting_train.hdf5
-mv art_painting_val.hdf5 artpainting_val.hdf5
-mv art_painting_test.hdf5 artpainting_test.hdf5  
-```
+
 
 ### Prepare hdf files for PACS
 ```
-cd pacs
-python prep_hdf.py
+cd data/pacs
+python prep_hdf.py --train-val-test train
+python prep_hdf.py --train-val-test val
+python prep_hdf.py --train-val-test test
+
 ```
 
 ## Download VLCS
@@ -108,5 +110,5 @@ python h_divergence.py --batch-size 500 --encoder-path path-to-trained-model --d
 - For running ResNet experiments:
 ```
 cd pacs-resnet
-python python train.py --train-model resnet18 --smoothing 0 --train-mode hv --nadir-slack 2.5 --alpha 0.8 --lr-task 0.01 --lr-domain 0.005 --patience 20 --l2 0.0005 --rp-size 512 --source1 photo --source2 cartoon --source3 sketch --target artpainting
+python train.py --train-model resnet18 --smoothing 0 --train-mode hv --nadir-slack 2.5 --alpha 0.8 --lr-task 0.01 --lr-domain 0.005 --patience 20 --l2 0.0005 --rp-size 512 --source1 photo --source2 cartoon --source3 sketch --target art_painting
 ```
