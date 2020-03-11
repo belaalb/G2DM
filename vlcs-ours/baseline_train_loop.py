@@ -3,7 +3,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from tqdm import tqdm
-from baseline_test_2sources import test
+from baseline_test import test
 import torchvision
 
 

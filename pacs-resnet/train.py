@@ -29,11 +29,11 @@ parser.add_argument('--l2', type=float, default=1e-5, metavar='L2', help='Weight
 parser.add_argument('--factor', type=float, default=0.1, metavar='f', help='LR decrease factor (default: 0.1')
 parser.add_argument('--checkpoint-epoch', type=int, default=None, metavar='N', help='epoch to load for checkpointing. If None, training starts from scratch')
 parser.add_argument('--checkpoint-path', type=str, default='./', metavar='Path', help='Path for checkpointing')
-parser.add_argument('--data-path', type=str, default='./prepared_data/', metavar='Path', help='Data path')
+parser.add_argument('--data-path', type=str, default= None, metavar='Path', help='Data path')
 parser.add_argument('--source1', type=str, default='photo', metavar='Path', help='Path to source1 file')
 parser.add_argument('--source2', type=str, default='cartoon', metavar='Path', help='Path to source2 file')
 parser.add_argument('--source3', type=str, default='sketch', metavar='Path', help='Path to source3 file')
-parser.add_argument('--target', type=str, default='artpainting', metavar='Path', help='Path to target data')
+parser.add_argument('--target', type=str, default='art_painting', metavar='Path', help='Path to target data')
 parser.add_argument('--seed', type=int, default=None, metavar='S', help='random seed (default: None)')
 parser.add_argument('--nadir-slack', type=float, default=1.5, metavar='nadir', help='factor for nadir-point update. Only used in hyper mode (default: 1.5)')
 parser.add_argument('--alpha', type=float, default=0.8, metavar='alpha', help='balance losses to train encoder. Should be within [0,1]')
@@ -90,21 +90,29 @@ for run in range(args.n_runs):
 	if args.seed is None:
 		random.seed(seeds[run])
 		torch.manual_seed(seeds[run])
+		if args.cuda:
+			torch.cuda.manual_seed(seeds[run])
 		checkpoint_path = os.path.join(args.checkpoint_path, args.target+'_seed'+str(seeds[run]))
 	else:
 		seeds[run]=args.seed
 		random.seed(args.seed)
 		torch.manual_seed(args.seed)
+		if args.cuda:
+			torch.cuda.manual_seed(args.seed)
 		checkpoint_path = os.path.join(args.checkpoint_path, args.target+'_seed'+str(args.seed))
 	
 
-	if args.cuda:
-		torch.cuda.manual_seed(args.seed)
+	
 
 	img_transform_train = transforms.Compose([transforms.RandomGrayscale(p=0.10),transforms.RandomResizedCrop(222, scale=(0.8,1.0)), transforms.RandomHorizontalFlip(),transforms.ColorJitter(brightness= 0.4, contrast= 0.4, saturation= 0.4, hue=min(0.5, 0.4)), transforms.ToTensor(), transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
 	img_transform_test = transforms.Compose([transforms.Resize(size=222), transforms.ToTensor(), transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
 #,transforms.ColorJitter(),transforms.CenterCrop(size=225),
 #,transforms.CenterCrop(size=225)
+
+	if args.data_path is None:
+		args.data_path = os.path.join('/',os.path.join(* os.getcwd().split('/')[0:-1]), 'data', 'pacs', 'prepared_data/')
+		print(args.data_path)
+
 	train_source_1 = args.data_path + 'train_' + args.source1 + '.hdf'
 	train_source_2 = args.data_path + 'train_' + args.source2 + '.hdf'
 	train_source_3 = args.data_path + 'train_' + args.source3 + '.hdf'
