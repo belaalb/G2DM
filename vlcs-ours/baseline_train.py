@@ -24,7 +24,7 @@ parser.add_argument('--momentum', type=float, default=0.9, metavar='m', help='mo
 parser.add_argument('--l2', type=float, default=0.00005, metavar='m', help='L2 weight decay (default: 0.00005)')
 parser.add_argument('--checkpoint-epoch', type=int, default=None, metavar='N', help='epoch to load for checkpointing. If None, training starts from scratch')
 parser.add_argument('--checkpoint-path', type=str, default=None, metavar='Path', help='Path for checkpointing')
-parser.add_argument('--data-path', type=str, default= None, metavar='Path', help='Data path')
+parser.add_argument('--data-path', type=str, default= '../data/vlcs/prepared_data/', metavar='Path', help='Data path')
 parser.add_argument('--source1', type=str, default='CALTECH', metavar='Path', help='Path to source1 file')
 parser.add_argument('--source2', type=str, default='LABELME', metavar='Path', help='Path to source2 file')
 parser.add_argument('--source3', type=str, default='SUN', metavar='Path', help='Path to source3 file')
@@ -64,9 +64,7 @@ for run in range(args.n_runs):
 	img_transform_train = transforms.Compose([transforms.RandomResizedCrop(225, scale=(0.7,1.0)), transforms.RandomHorizontalFlip(), transforms.ToTensor(), transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
 	img_transform_test = transforms.Compose([transforms.Resize((225, 225)), transforms.ToTensor(), transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
 
-	if args.data_path is None: 
-		args.data_path = os.path.join('/',os.path.join(* os.getcwd().split('/')[0:-1]), 'data', 'vlcs', 'prepared_data/')
-		print(args.data_path)  
+ 
 
 	train_source_1 = args.data_path + args.source1 + '/train/'
 	train_source_2 = args.data_path + args.source2 + '/train/'
