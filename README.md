@@ -1,5 +1,9 @@
 # Adversarial target-invariant domain generalization
 
+# Simple use
+
+Clone or download the repository and run binder.ipynb!
+
 # Binder
 Click on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadJavadD/TI-DG/master) and run binder.ipynb. If you get memory error on mybinder try to decrease batch_size or run the jupyter on the colab or a deep learning rig. ;) 
 
