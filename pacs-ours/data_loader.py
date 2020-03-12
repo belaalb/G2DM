@@ -213,7 +213,7 @@ class Loader_unif_sampling_test_visualization(data.Dataset):
 if __name__ == '__main__':
 
 	source_1 = './prepared_data/train_photo.hdf'
-	source_2 = './prepared_data/train_artpainting.hdf'
+	source_2 = './prepared_data/train_art_painting.hdf'
 	source_3 = './prepared_data/train_sketch.hdf'
 	
 	img_transform = transforms.Compose([transforms.Resize((224, 224)), transforms.ToTensor(), transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])

@@ -33,7 +33,7 @@ parser.add_argument('--data-path', type=str, default='../data/pacs/prepared_data
 parser.add_argument('--source1', type=str, default='photo', metavar='Path', help='Path to source1 file')
 parser.add_argument('--source2', type=str, default='cartoon', metavar='Path', help='Path to source2 file')
 parser.add_argument('--source3', type=str, default='sketch', metavar='Path', help='Path to source3 file')
-parser.add_argument('--target', type=str, default='artpainting', metavar='Path', help='Path to target data')
+parser.add_argument('--target', type=str, default='art_painting', metavar='Path', help='Path to target data')
 parser.add_argument('--seed', type=int, default=1, metavar='S', help='random seed (default: 1)')
 parser.add_argument('--nadir-slack', type=float, default=1.5, metavar='nadir', help='factor for nadir-point update. Only used in hyper mode (default: 1.5)')
 parser.add_argument('--alpha', type=float, default=0.8, metavar='alpha', help='balance losses to train encoder. Should be within [0,1]')

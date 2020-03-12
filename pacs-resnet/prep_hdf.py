@@ -25,7 +25,7 @@ def prep_hdf(dataset, out_path, train_test = 'train'):
 	
 	if dataset == 'photo':
 		domain = np.zeros(labels.shape)
-	#if dataset == 'artpainting':
+	#if dataset == 'art_painting':
 	if dataset == 'art_painting':
 		domain = np.ones(labels.shape)
 	if dataset == 'cartoon':
@@ -69,9 +69,9 @@ if __name__== '__main__':
 	parser.add_argument('--train-val-test', type=str, default='train', help='Preparing train or test data')
 	args = parser.parse_args()
 
-	#all_datasets = ['photo', 'artpainting', 'cartoon', 'sketch']
+	#all_datasets = ['photo', 'art_painting', 'cartoon', 'sketch']
 	all_datasets = ['photo', 'art_painting', 'cartoon', 'sketch']
-	#source_lists = [['photo', 'artpainting','cartoon'], ['photo', 'artpainting','sketch'], ['photo', 'cartoon', 'sketch'], ['artpainting', 'cartoon', 'sketch']] 
+	#source_lists = [['photo', 'art_painting','cartoon'], ['photo', 'art_painting','sketch'], ['photo', 'cartoon', 'sketch'], ['art_painting', 'cartoon', 'sketch']] 
 	source_lists = [['photo', 'art_painting','cartoon'], ['photo', 'art_painting','sketch'], ['photo', 'cartoon', 'sketch'], ['art_painting', 'cartoon', 'sketch']] 
 
 	hdf_path = './prepared_data/'
