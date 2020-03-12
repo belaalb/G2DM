@@ -42,13 +42,13 @@ python download_alexnet_vlcs.py
 ## Table 1
 Example considering Caltech101 as target domain.
 
-### Running ours [Done]
+### Running ours 
 ```
 cd vlcs-ours
 python train.py --lr-task 0.001 --lr-domain 0.005 --l2 0.005 --smoothing 0.2 --lr-threshold 0.0001 --factor 0.3 --alpha 0.8 --rp-size 3500 --patience 60 --warmup-its 300 --source1 PASCAL --source2 LABELME --source3 SUN --target CALTECH
 ```
 
-### Running ERM [Done]
+### Running ERM 
 ```
 cd vlcs-ours
 python baseline_train.py --lr 0.001 --l2 0.00001 --patience 120 --source1 PASCAL --source2 LABELME --source3 SUN --target CALTECH
@@ -118,7 +118,7 @@ cd pacs-ours
 python h_divergence.py --batch-size 500 --encoder-path path-to-trained-model --architecture 'adversarial'
 ```
 
-## Table 4 [Done]
+## Table 4 
 - For running AlexNet experiments, use same code from Table 3 experiments.
 - For running Jigsaw, see authors original implementation at https://github.com/fmcarlucci/JigenDG.
 - For running ResNet experiments:
