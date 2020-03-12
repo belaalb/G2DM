@@ -29,7 +29,7 @@ parser.add_argument('--l2', type=float, default=1e-5, metavar='L2', help='Weight
 parser.add_argument('--factor', type=float, default=0.1, metavar='f', help='LR decrease factor (default: 0.1')
 parser.add_argument('--checkpoint-epoch', type=int, default=None, metavar='N', help='epoch to load for checkpointing. If None, training starts from scratch')
 parser.add_argument('--checkpoint-path', type=str, default='./', metavar='Path', help='Path for checkpointing')
-parser.add_argument('--data-path', type=str, default='./prepared_data/', metavar='Path', help='Data path')
+parser.add_argument('--data-path', type=str, default='../data/pacs/prepared_data/', metavar='Path', help='Data path')
 parser.add_argument('--source1', type=str, default='photo', metavar='Path', help='Path to source1 file')
 parser.add_argument('--source2', type=str, default='cartoon', metavar='Path', help='Path to source2 file')
 parser.add_argument('--source3', type=str, default='sketch', metavar='Path', help='Path to source3 file')

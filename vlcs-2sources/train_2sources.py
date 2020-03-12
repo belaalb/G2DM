@@ -29,8 +29,8 @@ parser.add_argument('--momentum-domain', type=float, default=0.9, metavar='m', h
 parser.add_argument('--l2', type=float, default=1e-5, metavar='L2', help='Weight decay coefficient (default: 0.00001')
 parser.add_argument('--factor', type=float, default=0.1, metavar='f', help='LR decrease factor (default: 0.1')
 parser.add_argument('--checkpoint-epoch', type=int, default=None, metavar='N', help='epoch to load for checkpointing. If None, training starts from scratch')
-parser.add_argument('--checkpoint-path', type=str, default=None, metavar='Path', help='Path for checkpointing')
-parser.add_argument('--data-path', type=str, default='./vlcs/', metavar='Path', help='Data path')
+parser.add_argument('--checkpoint-path', type=str, default='./', metavar='Path', help='Path for checkpointing')
+parser.add_argument('--data-path', type=str, default='../data/vlcs/prepared_data/', metavar='Path', help='Data path')
 parser.add_argument('--source1', type=str, default='CALTECH', metavar='Path', help='Path to source1 file')
 parser.add_argument('--source2', type=str, default='LABELME', metavar='Path', help='Path to source2 file')
 parser.add_argument('--target1', type=str, default='SUN', metavar='Path', help='Path to target1 file')
@@ -118,7 +118,7 @@ for run in range(args.n_runs):
 		domain_discriminator_list.append(disc)	
 		
 	feature_extractor = models.AlexNet(num_classes = 5, baseline = False)
-	state_dict = torch.load("./alexnet_caffe.pth.tar")
+	state_dict = torch.load("../alexnet_caffe.pth.tar")
 	del state_dict["classifier.fc8.weight"]
 	del state_dict["classifier.fc8.bias"]
 	not_loaded = feature_extractor.load_state_dict(state_dict, strict = False)
