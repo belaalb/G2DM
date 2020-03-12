@@ -21,20 +21,6 @@ To Install requirements:
   pip install -r requirements.txt
 ```
 
-## Download PACS
-- Downlaod the original splits from the folder "train val splits and h5py files pre-read" found at https://drive.google.com/drive/folders/0B6x7gtvErXgfUU1WcGY5SzdwZVk
-- Move it to ./data/pacs/prepared_data
-and then
-
-
-### Prepare hdf files for PACS
-```
-cd data/pacs
-python prep_hdf.py --train-val-test train
-python prep_hdf.py --train-val-test val
-python prep_hdf.py --train-val-test test
-
-```
 
 ## Download VLCS
 Download it from http://www.mediafire.com/file/7yv132lgn1v267r/vlcs.tar.gz/file, extract, move it to ./data/vlcs/ prepared_data/ and then
@@ -42,10 +28,11 @@ Download it from http://www.mediafire.com/file/7yv132lgn1v267r/vlcs.tar.gz/file,
 
 ## Download pre-trained AlexNet 
 Download it from https://drive.google.com/file/d/1wUJTH1Joq2KAgrUDeKJghP1Wf7Q9w4z-/view?usp=sharing and move it to ./
-Or
+
+Or just run:
 
 ```
-python download_alexnet.py
+python download_alexnet_vlcs.py
 ```
 
 ## Table 1
@@ -87,6 +74,22 @@ python baseline_train.py --lr 0.001 --l2 0.00001 --patience 120 --source1 PASCAL
 ## Table 3 
 Example considering art painting as target domain.
 
+## Download PACS
+- Downlaod the original splits from the folder "train val splits and h5py files pre-read" found at https://drive.google.com/drive/folders/0B6x7gtvErXgfUU1WcGY5SzdwZVk
+- Move it to ./data/pacs/prepared_data
+and then
+
+
+### Prepare hdf files for PACS
+```
+cd data/pacs
+python prep_hdf.py --train-val-test train
+python prep_hdf.py --train-val-test val
+python prep_hdf.py --train-val-test test
+
+```
+
+
 ### Running ours
 ```
 cd pacs-ours
@@ -108,7 +111,7 @@ python train.py --lr 0.0004898536566546834 --l2 0.00221589136 --penalty_weight 9
 ## Figure 3
 ```
 cd pacs-ours
-python h_divergence.py --batch-size 500 --encoder-path path-to-trained-model --dg-type ['erm', 'adversarial'] 
+python h_divergence.py --batch-size 500 --encoder-path path-to-trained-model --architecture 'adversarial'
 ```
 
 ## Table 4 [Done]
