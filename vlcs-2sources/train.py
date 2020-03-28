@@ -11,9 +11,8 @@ import PIL
 import pandas	
 
 import models as models
-from baseline_train_loop import TrainLoop
+from train_loop import TrainLoop
 from data_loader import Loader_validation, Loader_unif_sampling
-import utils
 
 
 parser = argparse.ArgumentParser(description='VLCS baseline')
@@ -22,9 +21,11 @@ parser.add_argument('--epochs', type=int, default=100, metavar='N', help='number
 parser.add_argument('--lr', type=float, default=0.0005, metavar='LR', help='learning rate (default: 0.0002)')
 parser.add_argument('--momentum', type=float, default=0.9, metavar='m', help='momentum (default: 0.9)')
 parser.add_argument('--l2', type=float, default=0.00005, metavar='m', help='L2 weight decay (default: 0.00005)')
+parser.add_argument('--penalty_anneal_epochs', type=int, default=100)
+parser.add_argument('--penalty_weight', type=float, default=10000.0)
 parser.add_argument('--checkpoint-epoch', type=int, default=None, metavar='N', help='epoch to load for checkpointing. If None, training starts from scratch')
 parser.add_argument('--checkpoint-path', type=str, default=None, metavar='Path', help='Path for checkpointing')
-parser.add_argument('--data-path', type=str, default='./vlcs/', metavar='Path', help='Data path')
+parser.add_argument('--data-path', type=str, default='../data/vlcs/prepared_data/', metavar='Path', help='Data path')
 parser.add_argument('--source1', type=str, default='CALTECH', metavar='Path', help='Path to source1 file')
 parser.add_argument('--source2', type=str, default='LABELME', metavar='Path', help='Path to source2 file')
 parser.add_argument('--source3', type=str, default='SUN', metavar='Path', help='Path to source3 file')
@@ -87,20 +88,20 @@ for run in range(args.n_runs):
 	del state_dict["classifier.fc8.bias"]
 	not_loaded = model.load_state_dict(state_dict, strict = False)
 
-	optimizer = optim.SGD(list(model.features.parameters())+list(model.classifier.parameters()), lr=args.lr, momentum=args.momentum, weight_decay=args.l2, nesterov=True)
+	optimizer = optim.SGD(list(model.features.parameters())+list(model.classifier.parameters()), lr=args.lr, momentum=args.momentum, nesterov=True)
 
 	if args.cuda:
 		model = model.cuda()
 
 	torch.backends.cudnn.benchmark=True
 		
-	trainer = TrainLoop(model, optimizer, source_loader, test_source_loader, target_loader, args.patience, checkpoint_path=args.checkpoint_path, checkpoint_epoch=args.checkpoint_epoch, cuda=args.cuda)
+	trainer = TrainLoop(model, optimizer, source_loader, test_source_loader, target_loader, args.patience, args.l2, args.penalty_weight, args.penalty_anneal_epochs, checkpoint_path=args.checkpoint_path, checkpoint_epoch=args.checkpoint_epoch, cuda=args.cuda)
 
 	err = trainer.train(n_epochs=args.epochs, save_every=args.save_every)
 	acc_runs.append(1-err)
 
 print(acc_runs)
 df = pandas.DataFrame(data={'Acc-{}'.format(args.target): acc_runs, 'Seed': seeds[:args.n_runs]})
-df.to_csv('./baseline_accuracy_runs_'+args.target+'.csv', sep=',', index = False)
+df.to_csv('./irm_accuracy_runs_'+args.target+'.csv', sep=',', index = False)
 
 

@@ -25,7 +25,7 @@ def prep_hdf(dataset, out_path, train_test = 'train'):
 	
 	if dataset == 'photo':
 		domain = np.zeros(labels.shape)
-	if dataset == 'artpainting':
+	if dataset == 'art_painting':
 		domain = np.ones(labels.shape)
 	if dataset == 'cartoon':
 		domain = 2*np.ones(labels.shape)
@@ -68,7 +68,7 @@ if __name__== '__main__':
 	parser.add_argument('--train-val-test', type=str, default='train', help='Preparing train or test data')
 	args = parser.parse_args()
 
-	all_datasets = ['photo', 'artpainting', 'cartoon', 'sketch']
+	all_datasets = ['photo', 'art_painting', 'cartoon', 'sketch']
 	hdf_path = './prepared_data/'
 	
 	train_val_test = args.train_val_test

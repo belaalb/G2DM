@@ -44,9 +44,9 @@ class classifier(nn.Module):
 
 
 parser = argparse.ArgumentParser(description='PACS')
-parser.add_argument('--data-path', type=str, default='./prepared_data/', metavar='Path', help='Data path')
+parser.add_argument('--data-path', type=str, default='../data/pacs/prepared_data/', metavar='Path', help='Data path')
 parser.add_argument('--source1', type=str, default='photo', metavar='Path', help='Path to source1 file')
-parser.add_argument('--source2', type=str, default='artpainting', metavar='Path', help='Path to source2 file')
+parser.add_argument('--source2', type=str, default='art_painting', metavar='Path', help='Path to source2 file')
 parser.add_argument('--source3', type=str, default='cartoon', metavar='Path', help='Path to source3 file')
 parser.add_argument('--target', type=str, default='sketch', metavar='Path', help='Path to target data')
 parser.add_argument('--encoder-path', type=str, default=None, metavar='Path', help='Path for encoder')

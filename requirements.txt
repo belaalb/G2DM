@@ -1,0 +1,9 @@
+torch >= 1.2
+torchvision >= 0.4.1
+scikit-learn >= 0.19
+tensorboard >= 2.1.1 
+h5py
+tqdm
+pandas
+seaborn
+googledrivedownloader
