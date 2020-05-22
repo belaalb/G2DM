@@ -20,7 +20,8 @@ cmap.set_under(".5")
 
 for key in divergences.keys():
 
-	matrix = divergences[key]		
+	matrix = divergences[key]
+	matrix = 2*(1.-2.*(1-matrix))		
 	mask = np.zeros_like(matrix, dtype=np.bool)
 	mask[np.triu_indices_from(mask)] = True
 
@@ -37,7 +38,7 @@ for key in divergences.keys():
 	domains=['P', 'A', 'C', 'S']
 	fmt = lambda x, pos: '{:.2f}'.format(x)
 	ax = sns.heatmap(matrix, annot=True, fmt='.2f', cmap=cmap, cbar_kws={'format': FuncFormatter(fmt)}, cbar=False, xticklabels=domains, yticklabels=domains, annot_kws={"size": 25}, 
-vmin=0.7, vmax=1.0, mask=matrix.isnull())
+vmin=0.9, vmax=2, mask=matrix.isnull())
 	ax.xaxis.tick_top() # x axis on top
 	ax.xaxis.set_label_position('top')
 	ax.tick_params(length=0)
