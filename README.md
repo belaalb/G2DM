@@ -1,7 +1,7 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MohammadJavadD/TI-DG/blob/master/all_in_one.ipynb) 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MohammadJavadD/TI-DG/master)
 # Generalizing to unseen Domains via Distribution Matching (G2DM)
-Part of the code to reproduce the experiments from the preprint: [Generalizing to unseen domains via distribution matching](https://arxiv.org/abs/1911.00804)
+Code to reproduce the experiments from the preprint: [Generalizing to unseen domains via distribution matching](https://arxiv.org/abs/1911.00804)
 
 # Simple use
 
